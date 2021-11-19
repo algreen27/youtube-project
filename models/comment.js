@@ -8,7 +8,7 @@ const replySchema = new mongoose.Schema({
   });
 
 const commentSchema = new mongoose.Schema({
-    videoID:{ type: String, required: true},
+    videoId:{ type: String, required: true},
     text:{ type: String, required: true},
     likes: {type: Number, default: 0},
     dislikes: {type: Number, default: 0},
@@ -21,11 +21,11 @@ const commentSchema = new mongoose.Schema({
 
     function validateComment(comment) {
         const schema = Joi.object({
-          videoID: Joi.string().required(),
+          videoId: Joi.string().required(),
           text: Joi.string().required(),
           likes: Joi.number().required(),
           dislikes: Joi.number().required(),
-          replies: Joi.replySchema({})
+          replies: Joi.array()
         });
         return schema.validate(comment);
       }
