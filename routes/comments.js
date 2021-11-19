@@ -34,6 +34,7 @@ router.post("/", async (req, res) => {
       text: req.body.text,
       likes: req.body.likes,
       dislikes: req.body.dislikes,
+      replies: req.body.replySchema
     });
 
     await comment.save();
