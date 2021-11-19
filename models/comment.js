@@ -29,6 +29,15 @@ const commentSchema = new mongoose.Schema({
         });
         return schema.validate(comment);
       }
+      
+    function validateReply(reply) {
+        const schema = Joi.object({
+          text: Joi.string().required(),
+          likes: Joi.number().required(),
+          dislikes: Joi.number().required()
+        });
+        return schema.validate(reply);
+      }
 
 
     module.exports.Comment = Comment;
@@ -36,4 +45,5 @@ const commentSchema = new mongoose.Schema({
     module.exports.replySchema = replySchema;
     module.exports.commentSchema = commentSchema;
     module.exports.validateComment = validateComment;
+    module.exports.validateReply = validateReply;
     
