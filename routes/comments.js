@@ -1,4 +1,9 @@
-const { Comment, validateComment, validateReply, Reply } = require("../models/comment");
+const {
+  Comment,
+  validateComment,
+  validateReply,
+  Reply,
+} = require("../models/comment");
 const express = require("express");
 const router = express.Router();
 
@@ -17,7 +22,9 @@ router.get("/:id", async (req, res) => {
   try {
     const comment = await Comment.findById(req.params.id);
     if (!comment)
-      return res.status(400).send(`The video with id "${req.params.id}" does not exist.`);
+      return res
+        .status(400)
+        .send(`The video with id "${req.params.id}" does not exist.`);
     return res.send(comment);
   } catch (ex) {
     return res.status(500).send(`Internal Server Error: ${ex}`);
@@ -34,7 +41,7 @@ router.post("/", async (req, res) => {
       text: req.body.text,
       likes: req.body.likes,
       dislikes: req.body.dislikes,
-      replies: req.body.replies
+      replies: req.body.replies,
     });
 
     await comment.save();
@@ -51,11 +58,11 @@ router.put("/:id", async (req, res) => {
     const comment = await Comment.findByIdAndUpdate(
       req.params.id,
       {
-      videoId: req.body.videoId,
-      text: req.body.text,
-      likes: req.body.likes,
-      dislikes: req.body.dislikes,
-      replies: req.body.replies
+        videoId: req.body.videoId,
+        text: req.body.text,
+        likes: req.body.likes,
+        dislikes: req.body.dislikes,
+        replies: req.body.replies,
       },
       { new: true }
     );
@@ -108,9 +115,9 @@ router.put("/:id/replies/:id", async (req, res) => {
     const reply = await Reply.findByIdAndUpdate(
       req.params.id,
       {
-      text: req.body.text,
-      likes: req.body.likes,
-      dislikes: req.body.dislikes,
+        text: req.body.text,
+        likes: req.body.likes,
+        dislikes: req.body.dislikes,
       },
       { new: true }
     );
