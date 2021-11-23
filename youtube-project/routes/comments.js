@@ -92,6 +92,9 @@ router.delete("/:id", async (req, res) => {
 
 router.post("/:id/replies", async (req, res) => {
   try {
+    const comment = await Comment.findById(req.params.id);
+    if (!comment) return res.status(400).send(`The comment with ID ${req.params.id} does not exist`);
+
     const { error } = validateReply(req.body);
     if (error) return res.status(400).send(error);
 
@@ -101,8 +104,10 @@ router.post("/:id/replies", async (req, res) => {
       dislikes: req.body.dislikes,
     });
 
-    await reply.save();
-    return res.send(reply);
+    comment.replies.push(reply);
+
+    await comment.save();
+    return res.send(comment);
   } catch (ex) {
     return res.status(500).send(`Internal Server Error: ${ex}`);
   }
