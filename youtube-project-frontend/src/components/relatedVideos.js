@@ -1,12 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 
-const relatedVideos = (props) => {
-    const [videos, setVideos] = useState();
+
+const RelatedVideos = (props) => {
+    const [relatedVideos, setRelatedVideos] = useState([]);
 
 return (
 <div>
-    {videos.map((vid, i) => (
+    {relatedVideos.map((vid, i) => (
      <>
         <img alt={vid.snippet.title} src={vid.snippet.thumbnails.medium.url} width={vid.snippet.thumbnails.medium}/>
         <p style={{color: "black"}} key={i}>
@@ -16,4 +17,4 @@ return (
     ))};
 </div> 
 
-export default relatedVideos;
+export default RelatedVideos;
