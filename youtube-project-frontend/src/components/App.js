@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 import API_KEY from "../YT_API_KEY/API_KEY";
+import commentForm from "./commentForm";
+import relatedVideos from "./relatedVideos";
 
 const App = () => {
   const [key, setKey] = useState(API_KEY);
@@ -23,6 +25,12 @@ const App = () => {
       .then((res) => setComments(res.data));
   };
 
+  const getRelatedVideos = async () => {
+    await axios
+      .get(`https://www.googleapis.com/youtube/v3/search?`)
+      .then((res) => setRelatedVideos(res.data));
+  };
+
   return (
     <div>
       {/* <img src={comments} height="180" width="320"/> */}
@@ -39,6 +47,9 @@ const App = () => {
           </li>
         ))}
       </ul>
+      <div>
+        <commentForm/>
+      </div>
     </div>
   );
 };
