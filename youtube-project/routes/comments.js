@@ -39,9 +39,9 @@ router.post("/", async (req, res) => {
     const comment = new Comment({
       videoId: req.body.videoId,
       text: req.body.text,
-      likes: req.body.likes,
-      dislikes: req.body.dislikes,
-      replies: req.body.replies,
+      likes: 0,
+      dislikes: 0,
+      replies: [],
     });
 
     await comment.save();

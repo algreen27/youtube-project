@@ -23,8 +23,8 @@ const commentSchema = new mongoose.Schema({
         const schema = Joi.object({
           videoId: Joi.string().required(),
           text: Joi.string().required(),
-          likes: Joi.number().required(),
-          dislikes: Joi.number().required(),
+          likes: Joi.number(),
+          dislikes: Joi.number(),
           replies: Joi.array()
         });
         return schema.validate(comment);
