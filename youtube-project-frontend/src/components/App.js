@@ -9,6 +9,13 @@ const App = () => {
   const [videoImage, setVideoImage] = useState();
   const [comments, setComments] = useState([]);
 
+<<<<<<< HEAD
+  // const getVideo = async () => {
+  //   await axios.get(
+  //     `https://www.googleapis.com/youtube/v3/search?q=dogs&key=${API_KEY}&part=snippet`
+  //   ).then(res =>setVideoImage(res.data.items[0].snippet.thumbnails.medium.url))
+  // };
+=======
   const getVideo = async () => {
     await axios
       .get(
@@ -18,6 +25,7 @@ const App = () => {
         setVideoImage(res.data.items[0].snippet.thumbnails.medium.url)
       );
   };
+>>>>>>> d0a10460ed670eed186088230010690b2fbff7cb
 
   const getComments = async () => {
     await axios
@@ -35,6 +43,9 @@ const App = () => {
     <div>
       {/* <img src={comments} height="180" width="320"/> */}
       <button onClick={() => getComments()}>Get Comments</button>
+<<<<<<< HEAD
+      
+=======
       <ul>
         {comments.map((comment, i) => (
           <li key={i}>
@@ -47,9 +58,13 @@ const App = () => {
           </li>
         ))}
       </ul>
+<<<<<<< HEAD
       <div>
         <commentForm/>
       </div>
+=======
+>>>>>>> d0a10460ed670eed186088230010690b2fbff7cb
+>>>>>>> 8b4751a1b74b357fc73660399184715ddb7a7241
     </div>
   );
 };
