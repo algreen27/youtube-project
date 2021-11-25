@@ -1,33 +1,31 @@
-// import React, {useState} from 'react';
+import axios from "axios";
+import React from "react";
+import useForm from "./useForm";
 
-// const commentForm = ({commentBody, videoId}) => {
-  
-//     // const [commentBody,setCommentBody] = useState("");
+const CommentForm = ({videoId, getComments}) => {
+  const { commentBody, handleChange, handleSubmit } = useForm(postForm);
 
+  async function postForm(){
+      await axios.post(`http://localhost:8000/api/comments/`, {
+          videoId:videoId,
+          text:commentBody.commentBody,
+      }) .then(res => {getComments()})
 
-//     const handleSubmit = (event) => {
-//         event.preventDefault();
-//         props.postNewComment({
-//             body: commentBody,
-//         });
-//     }
+  }
 
-//     return(
-//         <div>
-//             <h2>Post Comment</h2>
-//             <form onSubmit={(e) => handleSubmit(e)}>
-//                 <input
-//                 placeholder="Post comment..."
-//                 value={commentBody}
-//                 onChange={(e) => setCommentBody(e.target.value)} />
-//                 <input
-//                 type= "submit"/>
-//             </form>
+  return (
+    <div>
+      <form onSubmit={(e) => handleSubmit(e)}>
+        <input
+          name="commentBody"
+          onChange={handleChange}
+          value={commentBody.commentBody}
+          required={true}
+        />
+        <button type="submit">Comment</button>
+      </form>
+    </div>
+  );
+};
 
-//         </div>
-//     )
-// }
-
-
-
-// export default commentForm;
+export default CommentForm;
