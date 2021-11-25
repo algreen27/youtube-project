@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import ReplyForm from "./ReplyForm";
 
-const CommentPrinter = ({ comments, videoId }) => {
+const CommentPrinter = ({ comments, videoId, getComments }) => {
   return (
     <div>
       <ul>
@@ -8,6 +9,7 @@ const CommentPrinter = ({ comments, videoId }) => {
           videoId === comment.videoId ? (
             <li key={i}>
               {comment.text}
+              <ReplyForm comment={comment} getComments={getComments}/>
               <ul>
                 {comment.replies.map((reply, i) => (
                   <li key={i}>{reply.text}</li>

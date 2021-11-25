@@ -100,8 +100,8 @@ router.post("/:id/replies", async (req, res) => {
 
     const reply = new Reply({
       text: req.body.text,
-      likes: req.body.likes,
-      dislikes: req.body.dislikes,
+      likes: 0,
+      dislikes: 0,
     });
 
     comment.replies.push(reply);

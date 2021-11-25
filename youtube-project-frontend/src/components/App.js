@@ -5,24 +5,23 @@ import CommentForm from "./CommentForm";
 import CommentPrinter from "./CommentPrinter";
 import RelatedVideos from "./RelatedVideos";
 
-
 const App = () => {
   const [key, setKey] = useState(API_KEY);
   const [videoImage, setVideoImage] = useState();
   const [comments, setComments] = useState([]);
   const [relatedVideos, setRelatedVideos] = useState([]);
   const [videoId, setVideoId] = useState("LYdW1RJ7Kis");
-  const [commentBody,setCommentBody] = useState("");
-
+  const [commentBody, setCommentBody] = useState("");
 
   const getVideo = async () => {
     await axios
       .get(
-        `https://www.googleapis.com/youtube/v3/search?q=golf&key=${API_KEY}&id=LYdW1RJ7Kis&maxResults=10`
+        `https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&id=LYdW1RJ7Kis&type=video`
       )
-      .then((res) =>
-        setVideoImage(res.data.items[0].snippet.thumbnails.medium.url)
-      );
+      .then((res) => {
+        setVideoId(res.data.items[0].id);
+        // setVideoImage(res.data.items[0].snippet.thumbnails.medium.url);
+      });
   };
 
   const getComments = async () => {
@@ -33,43 +32,34 @@ const App = () => {
 
   const getRelatedVideos = async () => {
     await axios
-      .get(`https://www.googleapis.com/youtube/v3/search?q=golf&key=${API_KEY}&id=${videoId}&maxResults=10&part=snippet`)
+      .get(
+        `https://www.googleapis.com/youtube/v3/search?q=golf&key=${API_KEY}&id=${videoId}&maxResults=10&part=snippet`
+      )
       .then((res) => {
         setRelatedVideos(res.data.items);
       });
 
-  const postNewComment = async () => {
-    await axios
-      .post(`http://localhost:8000/api/comments/${videoId}`)
-      .then((res) => {
-        setCommentBody(res.data);
-      });
-
   };
   useEffect(() => {
-    getRelatedVideos()
-  }, [])
+    getRelatedVideos();
+    getVideo();
+  }, []);
 
-  useEffect(() => {
-    postNewComment()
-  }, [])
+
+
+
   return (
     <div>
-      {/* <img src={comments} height="180" width="320"/> */}
-      <RelatedVideos relatedVideos={relatedVideos}/>
-      <CommentForm commentBody={commentBody}/>
+      <RelatedVideos relatedVideos={relatedVideos} />
+      
+      <CommentForm commentBody={commentBody} videoId={videoId} getComments={getComments} />
       <button onClick={() => getComments()}>Get Comments</button>
-      <CommentPrinter comments={comments} videoId={videoId}/>
+      <CommentPrinter comments={comments} videoId={videoId} getComments={getComments} />
       <div>
-        <button onClick={() => getRelatedVideos()}>Get Vidoes</button>
-        <button onClick={() => postNewComment()}>Post Comment</button>
-
+        {/* <button onClick={() => postNewComment()}>Post Comment</button> */}
       </div>
     </div>
   );
 };
-}
 
 export default App;
-
-
