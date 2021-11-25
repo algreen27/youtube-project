@@ -1,8 +1,8 @@
 // import React, {useState} from 'react';
 
-// const commentForm = () => {
+// const commentForm = ({commentBody, videoId}) => {
   
-//     const [commentBody,setCommentBody] = useState("");
+//     // const [commentBody,setCommentBody] = useState("");
 
 
 //     const handleSubmit = (event) => {
