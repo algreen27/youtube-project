@@ -20,6 +20,7 @@ import React from 'react';
 //     });
 //   }
 
+
 <div id="player"></div>
 
 var tag = document.createElement('script');

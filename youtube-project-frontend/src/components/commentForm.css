@@ -1,0 +1,10 @@
+.form-style{
+    background-color: #9E0D0D;
+    border: 10px double black;
+    width: 60%;
+    float: left;
+    align-content: center;
+    margin-top: 10%;
+    height: 400px;
+    overflow: scroll;
+}

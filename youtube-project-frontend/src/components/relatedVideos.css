@@ -1,0 +1,9 @@
+.related-videos {
+    height: 600px;
+    width: 20%;
+    border: 2px black;
+    float: right;
+    overflow: scroll;
+    margin-top: 10%;
+    background-color: black;
+}
