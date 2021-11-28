@@ -5,6 +5,7 @@ import CommentForm from "./CommentForm";
 import CommentPrinter from "./CommentPrinter";
 import RelatedVideos from "./RelatedVideos";
 // import VideoPlayer from "./VideoPlayer";
+import VideoPlayerTest from "./VideoPlayerTest";
 import "./App.css";
 import "./relatedVideos.css";
 import "./CommentForm.css";
@@ -55,6 +56,9 @@ const App = () => {
 
   return (
     <div>
+      <div>
+        <VideoPlayerTest />
+      </div>
       <div>
         {/* <SearchBar userInput={userInput}/> */}
       </div>
