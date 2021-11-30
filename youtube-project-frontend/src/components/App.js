@@ -4,12 +4,12 @@ import API_KEY from "../YT_API_KEY/API_KEY";
 import CommentForm from "./CommentForm";
 import CommentPrinter from "./CommentPrinter";
 import RelatedVideos from "./RelatedVideos";
-// import VideoPlayer from "./VideoPlayer";
-import VideoPlayerTest from "./VideoPlayerTest";
+import VideoPlayer from "./VideoPlayer";
 import "./App.css";
 import "./relatedVideos.css";
 import "./CommentForm.css";
 import SearchBar from "./SearchBar";
+import "./VideoPlayer.css"
 
 const App = () => {
   const [key, setKey] = useState(API_KEY);
@@ -57,7 +57,7 @@ const App = () => {
   return (
     <div>
       <div>
-        <VideoPlayerTest />
+        <VideoPlayer />
       </div>
       <div>
         {/* <SearchBar userInput={userInput}/> */}
